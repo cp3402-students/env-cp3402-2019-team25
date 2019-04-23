@@ -1,0 +1,23 @@
+[2019-04-18 16:42:41] ERROR: The package could not be installed.
+[2019-04-18 16:51:24] ERROR: The package could not be installed.
+[2019-04-18 16:51:43] ERROR: 
+[2019-04-18 16:52:07] ERROR: 
+[2019-04-18 16:52:14] ERROR: 
+[2019-04-18 16:52:47] ERROR: The package could not be installed.
+[2019-04-18 16:53:50] ERROR: The package could not be installed.
+[2019-04-18 17:04:14] ERROR: The package could not be installed.
+[2019-04-18 17:05:26] ERROR: 
+[2019-04-18 17:05:36] ERROR: 
+[2019-04-18 17:05:55] ERROR: The package could not be installed.
+[2019-04-18 17:08:50] ERROR: The package could not be installed.
+[2019-04-18 17:09:15] ERROR: The package could not be installed.
+[2019-04-18 17:10:27] ERROR: Download failed. Make sure repository handle is correct and that you have a valid token.<br>If you are using GitHub, try obtaining <a href="admin.php?page=wppusher&tab=github">a new token</a>.
+[2019-04-18 17:10:44] ERROR: The package could not be installed.
+[2019-04-18 17:10:53] ERROR: The package could not be installed.
+[2019-04-18 17:11:48] ERROR: The package could not be installed.
+[2019-04-18 23:39:09] ERROR: The package could not be installed.
+[2019-04-18 23:46:41] INFO: Plugin 'Wordpress-Plugin-Template' was successfully installed. File: 'Wordpress-Plugin-Template/wordpress-plugin-template.php'
+[2019-04-18 23:46:47] ERROR: Destination folder already exists.
+[2019-04-18 23:47:00] INFO: Plugin 'Wordpress-Plugin-Template' was successfully updated. File: 'Wordpress-Plugin-Template/wordpress-plugin-template.php'
+[2019-04-18 23:47:38] INFO: Theme 'Wordpress-Template-Theme' was successfully installed.
+[2019-04-21 18:13:11] INFO: Theme 'Wordpress-Template-Theme' was successfully updated.
