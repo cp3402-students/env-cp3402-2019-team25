@@ -4,6 +4,8 @@ if [[ "$OSTYPE" == "win32" ]]
 then
    SCRIPT=$(readlink -f "$0")
    PROJECT_DIRECTORY=$(dirname "$SCRIPT")
+   cp -rl hooks .git
+   call $PROJECT_DIRECTORY"scripts/make_symlinks.bat" "themes" $PROJECT_DIRECTORY"/www/public/wp-content/themes"
 elif [[ "$OSTYPE" == "darwin"* ]]
 then
    TARGET_FILE=$0
