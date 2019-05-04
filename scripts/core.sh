@@ -12,10 +12,10 @@ project_directory()
         cd `dirname $TARGET_FILE`
         TARGET_FILE=`basename $TARGET_FILE`
       done
-      PROJECT_DIRECTORY= echo `pwd -P` | sed -E 's/\/scripts//g'
+      PROJECT_DIRECTORY= echo `pwd -P` | echo $(sed -E 's/\/scripts//g') | sed -E 's/\/.git\/hooks//g'
    else
       SCRIPT=$(readlink -f "$0")
-      PROJECT_DIRECTORY= echo $(dirname "$SCRIPT") | sed -E 's/\/scripts//g'
+      PROJECT_DIRECTORY= echo $(dirname "$SCRIPT") | echo $(sed -E 's/\/scripts//g') | sed -E 's/\/.git\/hooks//g'
    fi
    echo $PROJECT_DIRECTORY
 }
