@@ -1,0 +1,1 @@
+. "./scripts/core.sh" "start"
