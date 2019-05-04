@@ -1,6 +1,2 @@
 #!/bin/sh
-<<<<<<< HEAD
-. . "../../scripts/core.sh" "update_database"
-=======
 . "../../scripts/core.sh" "update_database"
->>>>>>> 37509e9eb2474bee0b27c766abd04ad1fa3682ec
