@@ -1,3 +1,6 @@
 [submodule "database/database-cp3402-2019-team25"]
 	path = database/database-cp3402-2019-team25
 	url = https://github.com/Xett/database-cp3402-2019-team25
+[submodule "www/public/wp-content/themes/theme-cp3402-2019-team25"]
+	path = www/public/wp-content/themes/theme-cp3402-2019-team25
+	url = https://github.com/Xett/theme-cp3402-2019-team25
