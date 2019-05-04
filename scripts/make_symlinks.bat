@@ -1,1 +1,1 @@
-mklink /J %1 %2
+mklink /J "%1" "%2"
