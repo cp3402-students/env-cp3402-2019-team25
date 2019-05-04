@@ -19,7 +19,6 @@ project_directory()
    fi
    echo $PROJECT_DIRECTORY
 }
-COMMAND=$1
 PROJECT_DIRECTORY="$(project_directory)"
 MYSQL_DATABASE_NAME="scotchbox"
 MYSQL_USER="WebAdmin"
@@ -28,10 +27,9 @@ MYSQL_DUMP="/home/vagrant/database/mysql.sql"
 MYSQL_CREATE_USER=$PROJECT_DIRECTORY"/database/database-cp3402-2019-team25/create_user.sql"
 MYSQL_SSH_CREATE_USER="/home/vagrant/database/create_user.sql"
 DATABASE_DIRECTORY=$PROJECT_DIRECTORY"/database/database-cp3402-2019-team25"
-
 set_project()
 {
-   if [ $1 !='' ]
+   if [ -z !$1 ]
    then
       cd $PROJECT_DIRECTORY"/"$1
       git init
@@ -39,7 +37,7 @@ set_project()
 }
 revert_project()
 {
-   if [ $1 !='' ]
+   if [ -z !$1 ]
    then
       cd $PROJECT_DIRECTORY
       git init
@@ -82,16 +80,16 @@ dump_check()
 }
 update_database()
 {
-   get_current_branch "database"
-   get_numCommitsAhead "database"
-   get_numCommitsBehind "database"
-   update_check "database"
+   get_current_branch $DATABASE_DIRECTORY
+   get_numCommitsAhead $DATABASE_DIRECTORY
+   get_numCommitsBehind $DATABASE_DIRECTORY
+   update_check $DATABASE_DIRECTORY
 }
-dump_database_check()
+dump_database()
 {
-   get_current_branch "database"
-   get_numCommitsAhead "database"
-   get_numCommitsBehind "database"
+   get_current_branch $DATABASE_DIRECTORY
+   get_numCommitsAhead $DATABASE_DIRECTORY
+   get_numCommitsBehind $DATABASE_DIRECTORY
    dump_check
 }
 set_update_commands()
@@ -143,7 +141,7 @@ start()
 stop()
 {
    COMMAND="sudo service apache2 stop; echo \"Stopping Apache Web Server\"; "
-   dump_database_check
+   dump_database
    RESULT=$(vagrant ssh -- -t $COMMAND)
    echo "$RESULT"
    vagrant halt
@@ -152,22 +150,22 @@ ssh()
 {
    vagrant ssh
 }
-if [ $COMMAND=="install" ]
+if [[ "$1" == "install" ]]
 then
    install
-elif [ $COMMAND=="start" ]
+elif [[ "$1" == "start" ]]
 then
    start
-elif [ $COMMAND=="stop" ]
+elif [[ "$1" == "stop" ]]
 then
    stop
-elif [ $COMMAND=="ssh" ]
+elif [[ "$1" == "ssh" ]]
 then
    ssh
-elif [ $COMMAND=="dump_database" ]
+elif [[ "$1" == "dump_database" ]]
 then
    dump_database
-elif [ $COMMAND=="update_database" ]
+elif [[ "$1" == "update_database" ]]
 then
    update_database
 fi
