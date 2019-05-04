@@ -14,7 +14,7 @@ COMMANDS[0]="sudo service apache2 stop; echo \"Stopping Apache Web Server\"; "
 # Last ssh command ran on the server, starts the web server as we are finished
 COMMANDS[20]="sudo service apache2 start; echo \"Starting Apache Web Server\"; "
 # Import update_database_check function
-. $PROJECT_DIRECTORY"/scripts/update_database.sh"
+. $PROJECT_DIRECTORY"/scripts/database.sh"
 # Import create_webadmin function
 . $PROJECT_DIRECTORY"/scripts/create_mysql_webadmin.sh"
 set_update_commands()

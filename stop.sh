@@ -3,7 +3,7 @@ SCRIPT=$(readlink -f "$0")
 PROJECT_DIRECTORY=$(dirname "$SCRIPT")
 DATABASE_DIRECTORY=$PROJECT_DIRECTORY"/database/database-cp3402-2019-team25"
 # Import dump_database_check function
-. $PROJECT_DIRECTORY"/scripts/dump_database_check.sh"
+. $PROJECT_DIRECTORY"/scripts/database.sh"
 MYSQL_USER="WebAdmin"
 MYSQL_PASSWORD="gG5XCvUSL4keOwamsEz"
 MYSQL_DUMP="/home/vagrant/database/mysql.sql"
