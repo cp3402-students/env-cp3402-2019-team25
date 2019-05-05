@@ -58,9 +58,9 @@ update_check()
    if [ $(get_numCommitsBehind $(get_current_branch)) -gt 0 ]
    then
       git pull origin
-      set_update_commands
    fi
    revert_project
+   set_update_commands
 }
 dump_check()
 {
