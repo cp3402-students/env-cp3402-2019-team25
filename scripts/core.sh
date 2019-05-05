@@ -64,12 +64,16 @@ update_check()
 }
 dump_check()
 {
-   set_project $1
-   if [ $(get_numCommitsAhead $(get_current_branch)) -gt 0 ]
-   then
-      COMMAND=$COMMAND"sudo mysqldump -u$MYSQL_USER -p'$MYSQL_PASSWORD' scotchbox > $MYSQL_DUMP; echo \"Dumping MYSQL Databases\""
-   fi
-   revert_project
+   while true
+   do
+      echo "Would you like to dump the database?"
+      read -p "" yn
+      case $yn in
+         [Yy]* ) COMMANDS=$COMMANDS"sudo mysqldump -u$MYSQL_USER -p'$MYSQL_PASSWORD' scotchbox > $MYSQL_DUMP; echo \"Dumping MYSQL Databases\""; break;;
+         [Nn]* ) echo "Skipping database dump"; break;;
+         * ) echo "Please answer yes or no"
+      esac
+   done
 }
 update_database()
 {
@@ -169,11 +173,23 @@ start()
    RESULT=$(vagrant ssh -- -t $COMMAND )
    echo "$RESULT"
 }
+dump()
+{
+   COMMANDS[0]="sudo service apache2 stop; echo \"Stopping Apache Web Server\"; "
+   dump_database
+   COMMANDS+="sudo service apache2 start; echo \"Starting Apache Web Server\"; "
+   for i in "${COMMANDS[@]}"
+   do
+      COMMAND=$COMMAND$i
+   done
+   RESULT=$(vagrant ssh -- -t $COMMAND )
+   echo "$RESULT"
+}
 stop()
 {
-   COMMAND="sudo service apache2 stop; echo \"Stopping Apache Web Server\"; "
+   COMMANDS="sudo service apache2 stop; echo \"Stopping Apache Web Server\"; "
    dump_database
-   RESULT=$(vagrant ssh -- -t $COMMAND)
+   RESULT=$(vagrant ssh -- -t $COMMANDS)
    echo "$RESULT"
    vagrant halt
 }
@@ -195,7 +211,7 @@ then
    ssh
 elif [[ "$1" == "dump_database" ]]
 then
-   dump_database
+   dump
 elif [[ "$1" == "update_database" ]]
 then
    update_database
