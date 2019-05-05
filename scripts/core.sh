@@ -27,6 +27,8 @@ MYSQL_DUMP="/home/vagrant/database/mysql.sql"
 MYSQL_CREATE_USER=$PROJECT_DIRECTORY"/database/database-cp3402-2019-team25/create_user.sql"
 MYSQL_SSH_CREATE_USER="/home/vagrant/database/create_user.sql"
 DATABASE_DIRECTORY=$PROJECT_DIRECTORY"/database/database-cp3402-2019-team25"
+THEMES="$(project_directory)/themes/"
+PLUGINS="$(project_directory)/plugins/"
 set_project()
 {
    if [ -z !$1 ]
@@ -37,29 +39,26 @@ set_project()
 }
 revert_project()
 {
-   if [ -z !$1 ]
-   then
-      cd $PROJECT_DIRECTORY
-      git init
-   fi
+   cd $PROJECT_DIRECTORY
+   git init
 }
 get_current_branch()
 {
    set_project $1
    BRANCH=$(git branch | grep \* | cut -d ' ' -f2)
-   revert_project $1
+   revert_project
 }
 get_numCommitsAhead()
 {
    set_project $1
    AHEAD=$(git rev-list origin/$BRANCH..HEAD | wc -l)
-   revert_project $1
+   revert_project
 }
 get_numCommitsBehind()
 {
    set_project $1
    BEHIND=$(git rev-list HEAD..origin/$BRANCH | wc -l)
-   revert_project $1
+   revert_project
 }
 update_check()
 {
@@ -69,7 +68,7 @@ update_check()
       git pull origin/$BRANCH
       set_update_commands
    fi
-   revert_project $1
+   revert_project
 }
 dump_check()
 {
@@ -91,6 +90,41 @@ dump_database()
    get_numCommitsAhead $DATABASE_DIRECTORY
    get_numCommitsBehind $DATABASE_DIRECTORY
    dump_check
+}
+update_themes_plugins()
+{
+   for dir in $(find "$THEMES" -maxdepth 1 -type d \( ! -name . \))
+   do
+      DIRECTORY="$dir"/".git"
+      if [ -f "$DIRECTORY" ]
+      then
+         get_current_branch $dir
+         get_numCommitsAhead $dir
+         get_numCommitsBehind $dir
+         if [ $BEHIND -gt 0 ]
+         then
+            set_project $dir
+            git pull origin/$BRANCH
+            revert_project
+         fi
+      fi
+   done
+   for dir in $(find "$PLUGINS" -maxdepth 1 -type d \( ! -name . \))
+   do
+      DIRECTORY="$dir"/".git"
+      if [ -f "$DIRECTORY" ]
+      then
+         get_current_branch $dir
+         get_numCommitsAhead $dir
+         get_numCommitsBehind $dir
+         if [ $BEHIND -gt 0 ]
+         then
+            set_project $dir
+            git pull origin/$BRANCH
+            revert_project
+         fi
+      fi
+   done
 }
 set_update_commands()
 {
@@ -171,6 +205,9 @@ then
 elif [[ "$1" == "update_database" ]]
 then
    update_database
+elif [[ "$1" == "update_themes_plugins" ]]
+then
+   update_themes_plugins
 fi
 # Pause at end
 read -p "Press enter to continue"
