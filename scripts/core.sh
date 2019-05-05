@@ -27,8 +27,8 @@ MYSQL_DUMP="/home/vagrant/database/mysql.sql"
 MYSQL_CREATE_USER=$PROJECT_DIRECTORY"/database/database-cp3402-2019-team25/create_user.sql"
 MYSQL_SSH_CREATE_USER="/home/vagrant/database/create_user.sql"
 DATABASE_DIRECTORY=$PROJECT_DIRECTORY"/database/database-cp3402-2019-team25"
-THEMES="$(project_directory)/themes/"
-PLUGINS="$(project_directory)/plugins/"
+THEMES="$PROJECT_DIRECTORY/themes/"
+PLUGINS="$PROJECT_DIRECTORY/plugins/"
 set_project()
 {
    if [ -z !$1 ]
