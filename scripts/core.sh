@@ -27,69 +27,57 @@ MYSQL_DUMP="/home/vagrant/database/mysql.sql"
 MYSQL_CREATE_USER=$PROJECT_DIRECTORY"/database/database-cp3402-2019-team25/create_user.sql"
 MYSQL_SSH_CREATE_USER="/home/vagrant/database/create_user.sql"
 DATABASE_DIRECTORY=$PROJECT_DIRECTORY"/database/database-cp3402-2019-team25"
-THEMES="$PROJECT_DIRECTORY/themes/"
-PLUGINS="$PROJECT_DIRECTORY/plugins/"
+THEMES="$PROJECT_DIRECTORY/www/public/wp-content/themes/"
+PLUGINS="$PROJECT_DIRECTORY/www/public/wp-content/plugins/"
 set_project()
 {
-   if [ -z !$1 ]
-   then
-      cd $PROJECT_DIRECTORY"/"$1
-      git init
-   fi
+   cd $1
+   git init &> /dev/nul
+   git fetch origin
 }
 revert_project()
 {
    cd $PROJECT_DIRECTORY
-   git init
+   git init &> /dev/null
 }
 get_current_branch()
 {
-   set_project $1
-   BRANCH=$(git branch | grep \* | cut -d ' ' -f2)
-   revert_project
+   echo $(git branch | grep \* | cut -d ' ' -f2)
 }
 get_numCommitsAhead()
 {
-   set_project $1
-   AHEAD=$(git rev-list origin/$BRANCH..HEAD | wc -l)
-   revert_project
+   echo $(git rev-list origin/$1..HEAD | wc -l)
 }
 get_numCommitsBehind()
 {
-   set_project $1
-   BEHIND=$(git rev-list HEAD..origin/$BRANCH | wc -l)
-   revert_project
+   echo $(git rev-list HEAD..origin/$1 | wc -l)
 }
 update_check()
 {
    set_project $1
-   if [ $BEHIND -gt 0 ]
+   if [ $(get_numCommitsBehind $(get_current_branch)) -gt 0 ]
    then
-      git pull origin/$BRANCH
+      git pull origin
       set_update_commands
    fi
    revert_project
 }
 dump_check()
 {
-   if [ $AHEAD -gt 0 ]
-      then
-         COMMAND=$COMMAND"sudo mysqldump -u$MYSQL_USER -p'$MYSQL_PASSWORD' scotchbox > $MYSQL_DUMP; echo \"Dumping MYSQL Databases\""
-      fi
+   set_project $1
+   if [ $(get_numCommitsAhead $(get_current_branch)) -gt 0 ]
+   then
+      COMMAND=$COMMAND"sudo mysqldump -u$MYSQL_USER -p'$MYSQL_PASSWORD' scotchbox > $MYSQL_DUMP; echo \"Dumping MYSQL Databases\""
+   fi
+   revert_project
 }
 update_database()
 {
-   get_current_branch $DATABASE_DIRECTORY
-   get_numCommitsAhead $DATABASE_DIRECTORY
-   get_numCommitsBehind $DATABASE_DIRECTORY
    update_check $DATABASE_DIRECTORY
 }
 dump_database()
 {
-   get_current_branch $DATABASE_DIRECTORY
-   get_numCommitsAhead $DATABASE_DIRECTORY
-   get_numCommitsBehind $DATABASE_DIRECTORY
-   dump_check
+   dump_check $DATABASE_DIRECTORY
 }
 update_themes_plugins()
 {
@@ -99,13 +87,10 @@ update_themes_plugins()
       if [ -f "$DIRECTORY" ]
       then
          set_project $dir
-         get_current_branch $dir
-         get_numCommitsAhead $dir
-         get_numCommitsBehind $dir
-         if [ $BEHIND -gt 0 ]
+         if [ $(get_numCommitsBehind $(get_current_branch)) -gt 0 ]
          then
             echo "Updating $dir"
-            git pull origin/$BRANCH
+            git pull origin
          fi
          revert_project
       fi
@@ -116,13 +101,10 @@ update_themes_plugins()
       if [ -f "$DIRECTORY" ]
       then
          set_project $dir
-         get_current_branch $dir
-         get_numCommitsAhead $dir
-         get_numCommitsBehind $dir
-         if [ $BEHIND -gt 0 ]
+         if [ $(get_numCommitsBehind $(get_current_branch)) -gt 0 ]
          then
             echo "Updating $dir"
-            git pull origin/$BRANCH
+            git pull origin
          fi
          revert_project
       fi
