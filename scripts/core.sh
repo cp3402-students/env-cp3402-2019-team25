@@ -98,15 +98,16 @@ update_themes_plugins()
       DIRECTORY="$dir"/".git"
       if [ -f "$DIRECTORY" ]
       then
+         set_project $dir
          get_current_branch $dir
          get_numCommitsAhead $dir
          get_numCommitsBehind $dir
          if [ $BEHIND -gt 0 ]
          then
-            set_project $dir
+            echo "Updating $dir"
             git pull origin/$BRANCH
-            revert_project
          fi
+         revert_project
       fi
    done
    for dir in $(find "$PLUGINS" -maxdepth 1 -type d \( ! -name . \))
@@ -114,15 +115,16 @@ update_themes_plugins()
       DIRECTORY="$dir"/".git"
       if [ -f "$DIRECTORY" ]
       then
+         set_project $dir
          get_current_branch $dir
          get_numCommitsAhead $dir
          get_numCommitsBehind $dir
          if [ $BEHIND -gt 0 ]
          then
-            set_project $dir
+            echo "Updating $dir"
             git pull origin/$BRANCH
-            revert_project
          fi
+         revert_project
       fi
    done
 }
