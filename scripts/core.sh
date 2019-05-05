@@ -110,6 +110,16 @@ update_themes_plugins()
       fi
    done
 }
+change_submodule_branch()
+{
+   cd $1
+   git init
+   git checkout -b $2
+   git push origin $2
+   cd $PROJECT_DIRECTORY
+   git init
+   git config -f .gitmodules submodule.$1.branch $2
+}
 set_update_commands()
 {
    COMMANDS+="sudo mysql -u'root' -p'root' -e \"drop database $MYSQL_DATABASE_NAME\"; echo \"Clearing MYSQL Database\"; "
@@ -192,6 +202,19 @@ then
 elif [[ "$1" == "update_themes_plugins" ]]
 then
    update_themes_plugins
+elif [[ "$1" == "change_submodule_branch" ]]
+then
+   git init &> /dev/null
+   SUBMODULES=($(git config --file .gitmodules --get-regexp path | awk '{ print $2 }'))
+   echo "Choose submodule"
+   for i in "${!SUBMODULES[@]}"
+   do
+      echo "$i)" "${SUBMODULES[$i]}"
+   done
+   read -p "" CHOICE
+   read -p "Branch name: " BRANCH
+   git config --global credential.helper wincred
+   change_submodule_branch "${SUBMODULES[$CHOICE]}" $BRANCH
 fi
 # Pause at end
 read -p "Press enter to continue"
