@@ -115,13 +115,16 @@ install()
    then
       cp -RL $PROJECT_DIRECTORY"/hooks" $PROJECT_DIRECTORY"/.git"
       ln -s $PROJECT_DIRECTORY"/www/public/wp-content/themes" $PROJECT_DIRECTORY"/themes"
+      ln -s $PROJECT_DIRECTORY"/www/public/wp-content/plugins" $PROJECT_DIRECTORY"/plugins"
    elif [[ "$OSTYPE" == "msys" ]]
    then
       cp -rl $PROJECT_DIRECTORY"/hooks" $PROJECT_DIRECTORY"/.git"
       $PROJECT_DIRECTORY"/scripts/make_symlinks.bat" $PROJECT_DIRECTORY"/themes" $PROJECT_DIRECTORY"/www/public/wp-content/themes"
+      $PROJECT_DIRECTORY"/scripts/make_symlinks.bat" $PROJECT_DIRECTORY"/plugins" $PROJECT_DIRECTORY"/www/public/wp-content/plugins"
    else
       cp -rl $PROJECT_DIRECTORY"/hooks" $PROJECT_DIRECTORY"/.git"
       cp -l $PROJECT_DIRECTORY"/www/public/wp-content/themes" $PROJECT_DIRECTORY"/themes"
+      cp -l $PROJECT_DIRECTORY"/www/public/wp-content/plugins" $PROJECT_DIRECTORY"/plugins"
    fi
 }
 start()
