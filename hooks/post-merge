@@ -1,2 +1,3 @@
 #!/bin/sh
 . "../../scripts/core.sh" "update_database"
+. "../../scripts/core.sh" "update_themes_plugins"
