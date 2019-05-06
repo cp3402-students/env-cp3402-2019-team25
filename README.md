@@ -42,3 +42,7 @@ Database - scotchbox
 Username - WebAdmin
 
 Password - gG5XCvUSL4keOwamsEz
+
+# 3rd Party Plugins
+[Wp-scss](https://github.com/ConnectThink/WP-SCSS)
+Used to automate sass
