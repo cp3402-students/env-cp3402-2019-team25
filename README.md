@@ -3,6 +3,10 @@ Run install.sh. This links the post-merge hook inside ./hooks/ to ./.git/hooks.
 
 post-merge automates updating the database, plugin, and theme submodules after an update.
 
+Scripts should be ran in git Bash.
+
+It is recommended that you use [Github Desktop](https://desktop.github.com) to manage local repositories. It lets you add the submodules as local repositories, and adds your github credentials, which is accessed when you change a submodule's branch.
+
 # Usage
 
 ## Scripts
@@ -16,7 +20,7 @@ Run update_database.sh to update the database; this must be while the server is 
 
 Run update_themes_plugins.sh to update all theme and plugin submodules. If the submodule is ahead, nothing happens. If the branch isn't on master, it will be updated along that branch.
 
-Run change_submodule+branch.sh to change the branch of the database, or any theme or plugin submodule.
+Run change_submodule_branch.sh to change the branch of the database, or any theme or plugin submodule. This script uses the command "git config --global credential.helper wincred" to access github account information, but this will only work for windows at the moment.
 
 On a merge (after a pull) if the database is behind its branch it will be updated.
 
