@@ -43,6 +43,12 @@ Username - WebAdmin
 
 Password - gG5XCvUSL4keOwamsEz
 
+# Submodules
+
+[Database](https://github.com/Xett/database-cp3402-2019-team25)
+
+[Theme](https://github.com/Xett/theme-cp3402-2019-team25)
+
 # 3rd Party Plugins
 [Wp-scss](https://github.com/ConnectThink/WP-SCSS)
 Used to automate sass
