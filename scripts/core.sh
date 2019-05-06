@@ -230,7 +230,15 @@ then
    done
    read -p "" CHOICE
    read -p "Branch name: " BRANCH
-   git config --global credential.helper wincred
+   if [[ "$OSTYTPE" == "darwin"* ]]
+   then
+      git config --global credential.helper osxkeychain
+   elif [[ "$OSTYPE" == "msys" ]]
+   then
+      git config --global credential.helper wincred
+   else
+      git config --global credential.helper cache
+   fi
    change_submodule_branch "${SUBMODULES[$CHOICE]}" $BRANCH
 fi
 # Pause at end
