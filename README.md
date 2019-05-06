@@ -15,6 +15,8 @@ It is recommended that you use [Github Desktop](https://desktop.github.com) to m
 
 # Usage
 
+DON'T UPDATE THE ENVIRONMENT IF SUBMODULES ARE NOT USING THE MASTER BRANCH.
+
 ## Scripts
 Run start.sh to start and/or update the server.
 
@@ -32,7 +34,7 @@ On a merge (after a pull) if the database is behind its branch it will be update
 
 ## Submodules
 
-New features should be worked on in a dedicated branch, so when it is complete it can be merged back into the master, as the staging server automatically updated along the master branch of each submodule.
+New features should be worked on in a dedicated branch, so when it is complete it can be merged back into the master, as the staging server automatically updated along the master branch of each submodule. DON'T UPDATE THE ENVIRONMENT UNTIL THE BRANCH HAS BEEN MERGED WITH THE MASTER BRANCH.
 
 # How automation is implemented
 The post-merge git hook shell script is ran after a pull is merged to the local repository. This shell script checks the branch and the number of commits behind. If it is behind, it updates.
