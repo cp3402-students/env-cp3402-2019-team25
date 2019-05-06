@@ -20,7 +20,7 @@ Run update_database.sh to update the database; this must be while the server is 
 
 Run update_themes_plugins.sh to update all theme and plugin submodules. If the submodule is ahead, nothing happens. If the branch isn't on master, it will be updated along that branch.
 
-Run change_submodule_branch.sh to change the branch of the database, or any theme or plugin submodule. This script uses the command "git config --global credential.helper wincred" to access github account information, but this will only work for windows at the moment.
+Run change_submodule_branch.sh to change the branch of the database, or any theme or plugin submodule. This script uses the git credential helper. If running on windows and using Github Desktop credentials will be automated. OSX and Linux users will need to manage adding their credentials themselves, which can be read about [here](https://help.github.com/en/articles/caching-your-github-password-in-git)
 
 On a merge (after a pull) if the database is behind its branch it will be updated.
 
