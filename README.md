@@ -1,3 +1,9 @@
+# Prerequisites
+
+[VirtualBox](https://www.virtualbox.org)
+[Vagrant](https://www.vagrantup.com)
+[Git](https://git-scm.com)
+
 # Installation
 Run install.sh. This links the post-merge hook inside ./hooks/ to ./.git/hooks.
 
