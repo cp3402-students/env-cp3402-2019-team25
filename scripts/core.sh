@@ -164,6 +164,7 @@ start()
    COMMANDS[0]="sudo service apache2 stop; echo \"Stopping Apache Web Server\"; "
    create_webadmin
    update_database
+   update_themes_plugins
    COMMANDS+="sudo service apache2 start; echo \"Starting Apache Web Server\"; "
    vagrant up
    for i in "${COMMANDS[@]}"
