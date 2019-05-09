@@ -1,7 +1,3 @@
-[submodule "database-cp3402-2019-team25"]
-	path = database-cp3402-2019-team25
-	url = https://github.com/cp3402-students/database-cp3402-2019-team25
-	branch = master
 [submodule "www/public/wp-content/themes/theme-cp3402-2019-team25"]
 	path = www/public/wp-content/themes/theme-cp3402-2019-team25
 	url = https://github.com/cp3402-students/theme-cp3402-2019-team25
