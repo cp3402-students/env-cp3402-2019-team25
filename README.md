@@ -64,3 +64,11 @@ Password - gG5XCvUSL4keOwamsEz
 
 # 3rd Party Plugins
 [Wp-scss](https://github.com/ConnectThink/WP-SCSS) is used to automate sass
+
+# Servers
+
+Local Development Server http://192.168.33.10
+
+Staging Server: http://staging.cp3402-2019-team25.dns-cloud.net
+
+Deployment Server: http://deployment.cp3402-2019-team25.dns-cloud.net
