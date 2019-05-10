@@ -1,38 +1,52 @@
-# Prerequisites
+# Getting Started
+
+## Prerequisites
 
 [VirtualBox](https://www.virtualbox.org)
+
 [Vagrant](https://www.vagrantup.com)
+
 [Git](https://git-scm.com)
 
-# Installation
-Run install.sh. This links the post-merge hook inside ./hooks/ to ./.git/hooks.
+## Recommended
 
-post-merge automates updating the database, plugin, and theme submodules after an update.
+[Github Desktop](https://desktop.github.com)
+
+It is recommended that you use Github Desktop to manage local repositories. It lets you add the submodules as local repositories, and adds your github credentials, which is accessed when you change a submodule's branch.
+
+## Installation
 
 Scripts should be ran in git Bash.
 
-It is recommended that you use [Github Desktop](https://desktop.github.com) to manage local repositories. It lets you add the submodules as local repositories, and adds your github credentials, which is accessed when you change a submodule's branch.
+Run `install.sh` This links the post-merge hook inside ./hooks/ to ./.git/hooks.
+
+post-merge automates updating the database, plugin, and theme submodules after an update.
 
 # Usage
 
-DON'T UPDATE THE ENVIRONMENT IF SUBMODULES ARE NOT USING THE MASTER BRANCH.
+**DON'T UPDATE THE ENVIRONMENT IF SUBMODULES ARE NOT USING THE MASTER BRANCH**
 
 ## Scripts
-Run start.sh to start and/or update the server.
 
-Run ssh.sh to ssh into the server.
+Run `start.sh` to start and/or update the server.
 
-Run stop.sh to stop. There is a choice to server.
+Run `ssh.sh` to ssh into the server.
 
-Run update_database.sh to update the database; this must be while the server is running. If the database is ahead, nothing happens. If the branch isn't on master, it will be updated along that branch.
+Run `stop.sh` to stop. There is a choice to server.
 
-Run update_themes_plugins.sh to update all theme and plugin submodules. If the submodule is ahead, nothing happens. If the branch isn't on master, it will be updated along that branch.
+Run `update_database.sh` to update the database; this must be while the server is running. If the database is ahead, nothing happens. If the branch isn't on master, it will be updated along that branch.
 
-Run change_submodule_branch.sh to change the branch of the database, or any theme or plugin submodule. This script uses the git credential helper. If running on windows and using Github Desktop credentials will be automated. OSX and Linux users will need to manage adding their credentials themselves, which can be read about [here](https://help.github.com/en/articles/caching-your-github-password-in-git)
+Run `update_themes_plugins.sh` to update all theme and plugin submodules. If the submodule is ahead, nothing happens. If the branch isn't on master, it will be updated along that branch.
+
+Run `change_submodule_branch.sh` to change the branch of the database, or any theme or plugin submodule. This script uses the git credential helper. If running on windows and using Github Desktop credentials will be automated. OSX and Linux users will need to manage adding their credentials themselves, which can be read about [here](https://help.github.com/en/articles/caching-your-github-password-in-git)
 
 On a merge (after a pull) if the database is behind its branch it will be updated.
 
-## Submodules
+# Submodules
+
+[Database](https://github.com/Xett/database-cp3402-2019-team25)
+
+[Theme](https://github.com/Xett/theme-cp3402-2019-team25)
 
 New features should be worked on in a dedicated branch, so when it is complete it can be merged back into the master, as the staging server automatically updated along the master branch of each submodule. DON'T UPDATE THE ENVIRONMENT UNTIL THE BRANCH HAS BEEN MERGED WITH THE MASTER BRANCH.
 
@@ -55,12 +69,5 @@ Username - WebAdmin
 
 Password - gG5XCvUSL4keOwamsEz
 
-# Submodules
-
-[Database](https://github.com/Xett/database-cp3402-2019-team25)
-
-[Theme](https://github.com/Xett/theme-cp3402-2019-team25)
-
 # 3rd Party Plugins
-[Wp-scss](https://github.com/ConnectThink/WP-SCSS)
-Used to automate sass
+[Wp-scss](https://github.com/ConnectThink/WP-SCSS) is used to automate sass
