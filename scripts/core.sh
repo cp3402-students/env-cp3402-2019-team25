@@ -1,3 +1,4 @@
+# THis function returns the absolute path of the project directory
 project_directory()
 {
    if [[ "$OSTYTPE" == "darwin"* ]]
