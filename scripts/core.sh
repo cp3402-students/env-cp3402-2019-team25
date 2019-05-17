@@ -119,7 +119,7 @@ change_submodule_branch()
 {
    cd $1
    git init
-   git checkout -b $2
+   git checkout $2
    git branch
    git push origin $2
    cd $PROJECT_DIRECTORY
