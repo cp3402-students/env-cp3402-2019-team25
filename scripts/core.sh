@@ -120,6 +120,7 @@ change_submodule_branch()
    cd $1
    git init
    git checkout -b $2
+   git branch
    git push origin $2
    cd $PROJECT_DIRECTORY
    git init
@@ -159,6 +160,8 @@ install()
       cp -l $PROJECT_DIRECTORY"/www/public/wp-content/themes" $PROJECT_DIRECTORY"/themes"
       cp -l $PROJECT_DIRECTORY"/www/public/wp-content/plugins" $PROJECT_DIRECTORY"/plugins"
    fi
+   change_submodule_branch "database/database-cp3402-2019-team25" "master"
+   change_submodule_branch "www/public/wp-content/themes/theme-cp3402-2019-team25" "master"
 }
 start()
 {
