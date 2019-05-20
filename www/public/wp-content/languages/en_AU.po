@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 5.2.x - Development package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-05-17 17:00:47+0000\n"
+"PO-Revision-Date: 2019-05-18 01:07:42+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -86,6 +86,10 @@ msgstr "number_format_thousands_sep"
 #: wp-includes/class-wp-locale.php:213
 msgid "number_format_decimal_point"
 msgstr "number_format_decimal_point"
+
+#: wp-includes/taxonomy.php:2281
+msgid "Could not insert term taxonomy into the database."
+msgstr "Could not insert term taxonomy into the database."
 
 #: wp-includes/load.php:152
 msgid "Insufficient Requirements"
@@ -7837,7 +7841,7 @@ msgstr "Pause"
 msgid "Play"
 msgstr "Play"
 
-#: wp-includes/taxonomy.php:2124 wp-includes/taxonomy.php:2838
+#: wp-includes/taxonomy.php:2124 wp-includes/taxonomy.php:2842
 msgid "A name is required for this term."
 msgstr "A name is required for this term."
 
@@ -9832,7 +9836,7 @@ msgstr "Installation completed successfully."
 msgid "Taxonomy names must be between 1 and 32 characters in length."
 msgstr "Taxonomy names must be between 1 and 32 characters in length."
 
-#: wp-includes/taxonomy.php:3800
+#: wp-includes/taxonomy.php:3804
 msgid "Could not split shared term."
 msgstr "Could not split shared term."
 
@@ -10353,7 +10357,7 @@ msgstr "Bulk Select"
 
 #. translators: %s: taxonomy label, %l: list of terms formatted as per
 #. $term_template
-#: wp-includes/taxonomy.php:4313
+#: wp-includes/taxonomy.php:4317
 msgid "%s: %l."
 msgstr "%s: %l."
 
@@ -12110,7 +12114,7 @@ msgctxt "Display name based on first name and last name"
 msgid "%1$s %2$s"
 msgstr "%1$s %2$s"
 
-#: wp-includes/taxonomy.php:2536
+#: wp-includes/taxonomy.php:2540
 msgid "Could not insert term relationship into the database."
 msgstr "Could not insert term relationship into the database."
 
@@ -12393,7 +12397,7 @@ msgstr "Sorry, you are not allowed to edit terms in this taxonomy."
 #: wp-includes/class-wp-xmlrpc-server.php:2161
 #: wp-includes/rest-api/endpoints/class-wp-rest-terms-controller.php:414
 #: wp-includes/rest-api/endpoints/class-wp-rest-terms-controller.php:537
-#: wp-includes/taxonomy.php:2135 wp-includes/taxonomy.php:2842
+#: wp-includes/taxonomy.php:2135 wp-includes/taxonomy.php:2846
 msgid "Parent term does not exist."
 msgstr "Parent term does not exist."
 
@@ -12418,8 +12422,8 @@ msgstr "Sorry, you are not allowed to create terms in this taxonomy."
 #: wp-includes/taxonomy.php:721 wp-includes/taxonomy.php:821
 #: wp-includes/taxonomy.php:1003 wp-includes/taxonomy.php:1169
 #: wp-includes/taxonomy.php:1968 wp-includes/taxonomy.php:2106
-#: wp-includes/taxonomy.php:2417 wp-includes/taxonomy.php:2592
-#: wp-includes/taxonomy.php:2796
+#: wp-includes/taxonomy.php:2421 wp-includes/taxonomy.php:2596
+#: wp-includes/taxonomy.php:2800
 msgid "Invalid taxonomy."
 msgstr "Invalid taxonomy."
 
@@ -14162,12 +14166,12 @@ msgstr "Stylesheet is missing."
 msgid "The parent theme is missing. Please install the \"%s\" parent theme."
 msgstr "The parent theme is missing. Please install the \"%s\" parent theme."
 
-#: wp-includes/taxonomy.php:4385
+#: wp-includes/taxonomy.php:4389
 msgid "Invalid object ID."
 msgstr "Invalid object ID."
 
 #. translators: %s: taxonomy term slug
-#: wp-includes/taxonomy.php:2904
+#: wp-includes/taxonomy.php:2908
 msgid "The slug &#8220;%s&#8221; is already in use by another term."
 msgstr "The slug &#8220;%s&#8221; is already in use by another term."
 
@@ -14179,8 +14183,8 @@ msgstr "Could not insert term into the database."
 msgid "Invalid item ID."
 msgstr "Invalid item ID."
 
-#: wp-includes/taxonomy.php:817 wp-includes/taxonomy.php:2809
-#: wp-includes/taxonomy.php:4167
+#: wp-includes/taxonomy.php:817 wp-includes/taxonomy.php:2813
+#: wp-includes/taxonomy.php:4171
 msgid "Empty Term."
 msgstr "Empty Term."
 
