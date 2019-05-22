@@ -236,9 +236,41 @@ class RestAPI extends Factory
 		else
 			$class = '\\' . stripslashes( $request['phpClass'] );
 		
-		$map_id = $request['map_id'];
+		try{
+			
+			$reflection = new \ReflectionClass($class);
+			
+		}catch(Exception $e) {
+			
+			return WP_Error('wpgmza_invalid_datatable_class', 'Invalid class specified', array('status' => 403));
+			
+		}
 		
-		$instance = $class::createInstance($map_id);
+		if(
+				(
+					class_exists('\\WPGMZA\\MarkerListing') 
+					&&
+					$reflection->isSubclassOf('\\WPGMZA\\MarkerListing')
+				)
+				
+				||
+				
+				(
+					class_exists('\\WPGMZA\\MarkerListing\\AdvancedTable')
+					&&
+					(
+						$class == '\\WPGMZA\\MarkerListing\\AdvancedTable'
+						||
+						$reflection->isSubclassOf('\\WPGMZA\\MarkerListing\\AdvancedTable')
+					)
+				)
+			)
+		{
+			$map_id = $request['map_id'];
+			$instance = $class::createInstance($map_id);
+		}
+		else
+			$instance = $class::createInstance();
 		
 		if(!($instance instanceof DataTable))
 			return WP_Error('wpgmza_invalid_datatable_class', 'Specified PHP class must extend WPGMZA\\DataTable', array('status' => 403));

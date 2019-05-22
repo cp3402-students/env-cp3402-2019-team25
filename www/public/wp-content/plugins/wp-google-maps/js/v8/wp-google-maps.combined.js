@@ -9051,19 +9051,11 @@ jQuery(function($) {
 		var input		= encoder.encode(string);
 		var compressed	= pako.deflate(input);
 		
-		console.log(compressed);
-		
 		var raw			= Array.prototype.map.call(compressed, function(ch) {
 			return String.fromCharCode(ch);
 		}).join("");
 		
-		console.log(raw);
-		
 		var base64		= btoa(raw);
-		
-		console.log(base64);
-		
-		//var fullUrl		= WPGMZA.RestAPI.URL + "/datatables/?wpgmzaDataTableRequestData=" + base64;
 		
 		return {
 			wpgmzaDataTableRequestData: base64
