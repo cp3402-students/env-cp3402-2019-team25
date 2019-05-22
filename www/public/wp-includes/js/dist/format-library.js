@@ -1005,8 +1005,7 @@ var inline_URLPopoverAtLink = function URLPopoverAtLink(_ref3) {
       props = Object(objectWithoutProperties["a" /* default */])(_ref3, ["isActive", "addingLink", "value"]);
 
   var anchorRect = Object(external_this_wp_element_["useMemo"])(function () {
-    var selection = window.getSelection();
-    var range = selection.rangeCount > 0 ? selection.getRangeAt(0) : null;
+    var range = window.getSelection().getRangeAt(0);
 
     if (!range) {
       return;

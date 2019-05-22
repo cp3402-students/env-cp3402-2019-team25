@@ -209,16 +209,19 @@ function get_search_form( $args = array() ) {
 	 */
 	do_action( 'pre_get_search_form' );
 
+	$format = current_theme_supports( 'html5', 'search-form' ) ? 'html5' : 'xhtml';
+
+	/*
+	 * Back compat: to ensure previous uses of get_search_form continue to
+	 * function as expected, we handle a value for the boolean $echo param removed
+	 * in 5.2.0. Then we deal with the $args array and cast its defaults.
+	 */
 	$echo = true;
+	if ( false === $args ) {
+		$echo = false;
+	}
 
 	if ( ! is_array( $args ) ) {
-		/*
-		 * Back compat: to ensure previous uses of get_search_form() continue to
-		 * function as expected, we handle a value for the boolean $echo param removed
-		 * in 5.2.0. Then we deal with the $args array and cast its defaults.
-		 */
-		$echo = (bool) $args;
-
 		// Set an empty array and allow default arguments to take over.
 		$args = array();
 	}
@@ -239,8 +242,6 @@ function get_search_form( $args = array() ) {
 	 * @param array $args The array of arguments for building the search form.
 	 */
 	$args = apply_filters( 'search_form_args', $args );
-
-	$format = current_theme_supports( 'html5', 'search-form' ) ? 'html5' : 'xhtml';
 
 	/**
 	 * Filters the HTML format of the search form.

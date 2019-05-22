@@ -256,7 +256,6 @@ abstract class ParagonIE_Sodium_Core_BLAKE2b extends ParagonIE_Sodium_Core_Util
             if (++$i > $maxLength) {
                 return;
             }
-            /** @psalm-suppress MixedOperand */
             $u[$uIdx] >>= 8;
         }
     }
@@ -643,7 +642,7 @@ abstract class ParagonIE_Sodium_Core_BLAKE2b extends ParagonIE_Sodium_Core_Util
     /**
      * @internal You should not use this directly from another application
      *
-     * @param SplFixedArray $ctx
+     * @param SplFixedArray[SplFixedArray] $ctx
      * @return string
      * @throws TypeError
      * @psalm-suppress MixedArgument
