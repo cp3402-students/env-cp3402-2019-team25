@@ -87,7 +87,7 @@ class Plugin extends Factory
 		if(!empty($this->settings->wpgmza_maps_engine))
 			$this->settings->engine = $this->settings->wpgmza_maps_engine;
 		
-		add_action('init', array($this, 'onInit'));
+		add_action('init', array($this, 'onInit'), 9);
 		
 		foreach(Plugin::$enqueueScriptActions as $action)
 		{
@@ -199,7 +199,10 @@ class Plugin extends Factory
 
 			'settings' 				=> $settings,
 			'currentPage'			=> $this->getCurrentPage(),
+			
 			'userCanAdministrator'	=> (current_user_can('administrator') ? 1 : 0),
+			'serverCanInflate'		=> function_exists('zlib_decode'),
+			
 			'localized_strings'		=> $strings->getLocalizedStrings(),
 			'api_consent_html'		=> $this->gdprCompliance->getConsentPromptHTML(),
 			'basic_version'			=> $this->getBasicVersion(),

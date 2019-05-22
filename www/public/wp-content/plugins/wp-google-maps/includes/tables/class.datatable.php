@@ -6,7 +6,11 @@ class DataTable extends AjaxTable
 {
 	public function __construct($table_name, $ajax_parameters=null, $datatable_options=null)
 	{
+		global $wpgmza;
+		
 		AjaxTable::__construct($table_name, '/datatables/', $ajax_parameters);
+		
+		wp_enqueue_script('pako-deflate', plugin_dir_url(WPGMZA_FILE) . 'lib/pako_deflate.min.js', $wpgmza->getBasicVersion());
 		
 		$this->element->setAttribute('data-wpgmza-datatable', 'true');
 		

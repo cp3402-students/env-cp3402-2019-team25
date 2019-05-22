@@ -4438,6 +4438,7 @@ function wpgmaps_settings_page_basic() {
             $ret .= "                       </td>";
             $ret .= "                   </tr>";
             $ret .= "                   </table>";
+            $ret .= "<button data-required-maps-engine='open-layers' id='wpgmza_flush_cache_btn' class='button-primary'>".__("Flush Geocode Cache","wp-google-maps")."</button>";
             $ret .= "               <h4>".__("Custom Scripts","wp-google-maps")."</h4>";
             $ret .= "                   <table class='form-table'>";
             $ret .= "                    <tr>";
@@ -4453,7 +4454,6 @@ function wpgmaps_settings_page_basic() {
             $ret .= "                       </td>";
             $ret .= "                   </tr>";
             $ret .= "                   </table>";
-			
 			$ret .= "
 			
 			<h4>" . __('Developer Mode', 'wp-google-maps') . "</h4>
@@ -4467,9 +4467,7 @@ function wpgmaps_settings_page_basic() {
 			
             $ret .= "       </div>";
             $ret .= "       <p class='submit'><input type='submit' name='wpgmza_save_settings' class='button-primary' value='".__("Save Settings","wp-google-maps")." &raquo;' /></p>";
-            $ret .= "   </form>";
-			
-			
+            $ret .= "   </form>";			
             $ret .=  "</div>";
 			
             echo $ret;
@@ -6378,7 +6376,7 @@ if (function_exists('wpgmza_register_pro_version')) {
 function wpgmaps_check_shortcode() {
     global $posts;
     global $short_code_active;
-    $short_code_active = false;
+    // $short_code_active = false;
     $pattern = get_shortcode_regex();
 
     foreach ($posts as $wpgmpost) {

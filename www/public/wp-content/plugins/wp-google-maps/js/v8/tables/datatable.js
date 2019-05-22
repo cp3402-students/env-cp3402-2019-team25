@@ -20,6 +20,24 @@ jQuery(function($) {
 		this.wpgmzaDataTable	= this;
 	}
 	
+	Object.defineProperty(WPGMZA.DataTable.prototype, "canSendCompressedRequests", {
+		
+		"get": function() {
+			
+			// TODO: Uncomment below for production
+			
+			return (
+				WPGMZA.serverCanInflate == 1 && 
+				"Uint8Array" in window && 
+				"TextEncoder" in window && 
+				!WPGMZA.settings.forceDatatablesPOST && 
+				WPGMZA.settings.useCompressedDataTablesRequests
+			);
+			
+		}
+		
+	});
+	
 	WPGMZA.DataTable.prototype.getDataTableElement = function()
 	{
 		return $(this.element).find("table");
@@ -31,6 +49,7 @@ jQuery(function($) {
 		var element = this.element;
 		var options = {};
 		var ajax;
+		var method = this.canSendCompressedRequests ? "GET" : "POST";
 		
 		if($(element).attr("data-wpgmza-datatable-options"))
 			options = JSON.parse($(element).attr("data-wpgmza-datatable-options"));
@@ -39,7 +58,7 @@ jQuery(function($) {
 		{
 			options.ajax = {
 				url: WPGMZA.resturl + ajax,
-				method: "POST",	// We don't use GET because the request can get bigger than some browsers maximum URL lengths
+				method: method,	// We don't use GET because the request can get bigger than some browsers maximum URL lengths
 				data: function(data, settings) {
 					return self.onAJAXRequest(data, settings);
 				},
@@ -368,8 +387,34 @@ jQuery(function($) {
 		
 		$.extend(data, params);
 		
-		return {
+		var uncompressed = {
 			wpgmzaDataTableRequestData: data
+		};
+		
+		if(!this.canSendCompressedRequests)
+			return uncompressed;
+		
+		var string		= JSON.stringify(data);
+		var encoder		= new TextEncoder();
+		var input		= encoder.encode(string);
+		var compressed	= pako.deflate(input);
+		
+		console.log(compressed);
+		
+		var raw			= Array.prototype.map.call(compressed, function(ch) {
+			return String.fromCharCode(ch);
+		}).join("");
+		
+		console.log(raw);
+		
+		var base64		= btoa(raw);
+		
+		console.log(base64);
+		
+		//var fullUrl		= WPGMZA.RestAPI.URL + "/datatables/?wpgmzaDataTableRequestData=" + base64;
+		
+		return {
+			wpgmzaDataTableRequestData: base64
 		};
 	}
 	

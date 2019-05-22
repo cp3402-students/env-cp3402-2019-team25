@@ -216,10 +216,29 @@ class RestAPI extends Factory
 	public function datatables()
 	{
 		$request = $_REQUEST['wpgmzaDataTableRequestData'];
+		$base64Regex = '/[^-A-Za-z0-9+\/=]|=[^=]|={3,}$/';
 		
-		$class = '\\' . stripslashes( $request['phpClass'] );
+		if(is_string($request) && ($decoded = base64_decode($request, true)))
+		{
+			$decoded = base64_decode($request);
+			
+			if(!function_exists('zlib_decode'))
+				return WP_Error('wpgmza_invalid_datatable_request', 'The request was deflated, this server does not support inflate');
+			
+			if(!($string = zlib_decode($decoded)))
+				return WP_Error('wpgmza_invalid_datatable_request', 'The server failed to decompress the request');
+			
+			if(!($request = json_decode($string, JSON_OBJECT_AS_ARRAY)))
+				return WP_Error('wpgmza_invalid_datatable_request', 'The decompressed request could not be interpreted as JSON');
+			
+			$class = '\\' . $request['phpClass'];
+		}
+		else
+			$class = '\\' . stripslashes( $request['phpClass'] );
 		
-		$instance = $class::createInstance();
+		$map_id = $request['map_id'];
+		
+		$instance = $class::createInstance($map_id);
 		
 		if(!($instance instanceof DataTable))
 			return WP_Error('wpgmza_invalid_datatable_class', 'Specified PHP class must extend WPGMZA\\DataTable', array('status' => 403));
