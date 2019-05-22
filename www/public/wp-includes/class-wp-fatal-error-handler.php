@@ -37,7 +37,7 @@ class WP_Fatal_Error_Handler {
 				return;
 			}
 
-			if ( ! isset( $GLOBALS['wp_locale'] ) && function_exists( 'load_default_textdomain' ) ) {
+			if ( ! isset( $GLOBALS['wp_locale'] ) ) {
 				load_default_textdomain();
 			}
 
@@ -163,10 +163,6 @@ class WP_Fatal_Error_Handler {
 
 		if ( ! function_exists( 'wp_die' ) ) {
 			require_once ABSPATH . WPINC . '/functions.php';
-		}
-
-		if ( ! class_exists( 'WP_Error' ) ) {
-			require_once ABSPATH . WPINC . '/class-wp-error.php';
 		}
 
 		if ( is_protected_endpoint() ) {
