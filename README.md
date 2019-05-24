@@ -38,8 +38,8 @@ On a merge (after a pull) if the database is behind its branch it will be update
 
 # Submodules
 
-- [Database](https://github.com/Xett/database-cp3402-2019-team25)
-- [Theme](https://github.com/Xett/theme-cp3402-2019-team25)
+- [Database](https://github.com/cp3402-students/database-cp3402-2019-team25)
+- [Theme](https://github.com/cp3402-students/theme-cp3402-2019-team25)
 
 New features should be worked on in a dedicated branch, so when it is complete it can be merged back into the master, as the staging server automatically updated along the master branch of each submodule. DON'T UPDATE THE ENVIRONMENT UNTIL THE BRANCH HAS BEEN MERGED WITH THE MASTER BRANCH.
 
