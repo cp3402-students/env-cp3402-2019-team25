@@ -69,6 +69,6 @@ Password - gG5XCvUSL4keOwamsEz
 
 Local Development Server http://192.168.33.10
 
-Staging Server: http://staging.cp3402-2019-team25.dns-cloud.net
+Staging Server: http://35.201.21.232
 
-Deployment Server: http://deployment.cp3402-2019-team25.dns-cloud.net
+Deployment Server: http://35.244.72.62
