@@ -28,7 +28,7 @@ post-merge automates updating the database, plugin, and theme submodules after a
 
 - Run `start.sh` to start and/or update the server.
 - Run `stop.sh` to stop. There is a choice to server.
-
+- Run `sass.sh` to update the css of the theme.
 - Run `ssh.sh` to ssh into the server.
 - Run `update_database.sh` to update the database; this must be while the server is running. If the database is ahead, nothing happens. If the branch isn't on master, it will be updated along that branch.
 - Run `update_themes_plugins.sh` to update all theme and plugin submodules. If the submodule is ahead, nothing happens. If the branch isn't on master, it will be updated along that branch.
@@ -61,9 +61,6 @@ Database - scotchbox
 Username - WebAdmin
 
 Password - gG5XCvUSL4keOwamsEz
-
-# 3rd Party Plugins
-[Wp-scss](https://github.com/ConnectThink/WP-SCSS) is used to automate sass
 
 # Servers
 
