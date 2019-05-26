@@ -8,7 +8,7 @@
     "cluster.messagebus.sns.topic_arn": "",
     "dbcache.configuration_overloaded": false,
     "dbcache.debug": false,
-    "dbcache.enabled": false,
+    "dbcache.enabled": "0",
     "dbcache.engine": "file",
     "dbcache.file.gc": 3600,
     "dbcache.file.locking": false,
@@ -57,7 +57,7 @@
         "\\bfound_rows\\(\\)"
     ],
     "objectcache.configuration_overloaded": false,
-    "objectcache.enabled": false,
+    "objectcache.enabled": "0",
     "objectcache.debug": false,
     "objectcache.enabled_for_wp_admin": true,
     "objectcache.fallback_transients": true,
@@ -98,7 +98,7 @@
     "objectcache.lifetime": 180,
     "objectcache.purge.all": false,
     "pgcache.configuration_overloaded": false,
-    "pgcache.enabled": false,
+    "pgcache.enabled": "0",
     "pgcache.comment_cookie_ttl": 1800,
     "pgcache.debug": false,
     "pgcache.engine": "file_generic",
@@ -217,10 +217,10 @@
             ]
         }
     },
-    "stats.enabled": false,
+    "stats.enabled": "0",
     "minify.configuration_overloaded": false,
-    "minify.enabled": false,
-    "minify.auto": true,
+    "minify.enabled": "0",
+    "minify.auto": "1",
     "minify.debug": false,
     "minify.engine": "file",
     "minify.error.notification": "",
@@ -319,7 +319,7 @@
     ],
     "minify.cache.files_regexp": false,
     "cdn.configuration_overloaded": false,
-    "cdn.enabled": false,
+    "cdn.enabled": "0",
     "cdn.debug": false,
     "cdn.flush_manually": false,
     "cdn.engine": "stackpath2",
@@ -463,7 +463,7 @@
         "{plugins_dir}\/wp-fb-autoconnect\/facebook-platform\/channel.html"
     ],
     "cdn.reject.ssl": false,
-    "cdnfsd.enabled": false,
+    "cdnfsd.enabled": "0",
     "cdnfsd.engine": "",
     "cdnfsd.debug": false,
     "cdnfsd.cloudfront.access_key": "",
@@ -484,11 +484,13 @@
     "cdnfsd.stackpath2.domain": [],
     "cdnfsd.stackpath2.ssl": "auto",
     "varnish.configuration_overloaded": false,
-    "varnish.enabled": false,
+    "varnish.enabled": "0",
     "varnish.debug": false,
-    "varnish.servers": [],
+    "varnish.servers": [
+        ""
+    ],
     "browsercache.configuration_overloaded": false,
-    "browsercache.enabled": true,
+    "browsercache.enabled": "1",
     "browsercache.rewrite": false,
     "browsercache.no404wp": false,
     "browsercache.no404wp.exceptions": [
@@ -813,16 +815,16 @@
         }
     },
     "common.support": "",
-    "common.track_usage": false,
+    "common.track_usage": "1",
     "common.tweeted": false,
-    "config.check": true,
+    "config.check": "1",
     "config.path": "",
     "widget.latest.items": 3,
     "widget.latest_news.items": 5,
-    "widget.pagespeed.enabled": true,
+    "widget.pagespeed.enabled": "1",
     "widget.pagespeed.key": "",
     "widget.pagespeed.key.restrict.referrer": "",
-    "widget.pagespeed.show_in_admin_bar": false,
+    "widget.pagespeed.show_in_admin_bar": "0",
     "timelimit.email_send": 180,
     "timelimit.varnish_purge": 300,
     "timelimit.cache_flush": 600,
@@ -846,5 +848,8 @@
         "wordpress-seo": "*"
     },
     "plugin.license_key": "",
-    "plugin.type": ""
+    "plugin.type": "",
+    "fragmentcache": {
+        "engine": ""
+    }
 }
