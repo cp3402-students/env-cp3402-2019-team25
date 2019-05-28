@@ -202,6 +202,11 @@ ssh()
 {
    vagrant ssh
 }
+sass()
+{
+  $PROJECT_DIRECTORY"/dart-sass/sass.bat" $PROJECT_DIRECTORY"/www/public/wp-content/themes/theme-cp3402-2019-team25/sass/theme.scss" $PROJECT_DIRECTORY"/www/public/wp-content/themes/theme-cp3402-2019-team25/css/theme.css"
+  $PROJECT_DIRECTORY"/dart-sass/sass.bat" $PROJECT_DIRECTORY"/www/public/wp-content/themes/theme-cp3402-2019-team25/sass/theme.scss" $PROJECT_DIRECTORY"/www/public/wp-content/themes/theme-cp3402-2019-team25/css/theme.min.css" "--style=compressed"
+}
 if [[ "$1" == "install" ]]
 then
    install
@@ -214,6 +219,9 @@ then
 elif [[ "$1" == "ssh" ]]
 then
    ssh
+elif [[ "$1" == "sass" ]]
+then
+   sass
 elif [[ "$1" == "dump_database" ]]
 then
    dump
